@@ -26,14 +26,28 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form action="save" >
-				<fieldset class="form">
-					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-				</fieldset>
-			</g:form>
+			%{--<g:form action="save" >--}%
+				%{--<fieldset class="form">--}%
+					%{--<g:render template="form"/>--}%
+				%{--</fieldset>--}%
+				%{--<fieldset class="buttons">--}%
+					%{--<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />--}%
+				%{--</fieldset>--}%
+			%{--</g:form>--}%
+
+            <div id="footerwrap">
+                <div class="container">
+                    <div class="col-lg-4">
+                        <h3>Sign-Up</h3>
+                        <br>
+                        <form role="form" action="save" method="post" enctype="plain">
+
+                            <br>
+                            <button type="submit" class="btn btn-large btn-success">REGISTER</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
 		</div>
 	</body>
 </html>

@@ -1,0 +1,52 @@
+li {
+	list-style-type: none;
+}
+
+
+/**navbar**/
+.navbar-collapse .nav {
+	float: right;
+}
+
+/**login-form**/
+.col-lg-4 {
+	float: none;
+	margin: 0 auto;
+}
+
+.img-pad {
+	padding-bottom: 20px;
+}
+
+.prof-info {
+	margin-left: -45px;
+}
+
+.codename-icon li {
+	display: inline;
+	font-size: 24px;
+}
+
+.codename-icon li span {
+	margin-left: 20px;
+}
+
+.codename li {
+	font-size: 20px;
+	color: #fff;
+}
+
+.form-centered {
+	float: none;
+	margin: 0 auto;
+}
+.img-centered {
+	margin: 35px 0px 25px;
+}
+
+.img-centered img {
+	margin: 0 auto;
+
+}
+
+
