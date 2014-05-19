@@ -22,6 +22,9 @@
         <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.css')}" type="text/css">
         <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+        <g:javascript src="jquery.min.js"/>
+        <g:javascript src="smoothscroll.js"/>
+
         <g:layoutHead/>
 		<r:layoutResources />
 	</head>
@@ -40,8 +43,21 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><g:link action="create">Login</g:link></li>
-                    <li><g:link action="create">Sign-Up</g:link></li>
+                <g:if test="${session?.user}">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">${session?.user?.name}      <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="/coderpg/player/quests/">Quest</a></li>
+                            <li class="divider"></li>
+                            <li><g:link action="logout"><b>Logout</b></g:link></li>
+                        </ul>
+                    </li>
+                </g:if>
+                    <g:else>
+                        <li><g:link action="login">Login</g:link></li>
+                        <li><g:link action="create">Sign-Up</g:link></li>
+                    </g:else>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -53,8 +69,16 @@
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>
         <g:javascript src="bootstrap.js"/>
+        <r:layoutResources />
 
-        <g:javascript src="jquery.min.js"/>
-		<r:layoutResources />
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="assets/js/bootstrap.js"></script>
+        <script>
+            $('.carousel').carousel({
+                interval: 3500
+            })
+        </script>
 	</body>
 </html>

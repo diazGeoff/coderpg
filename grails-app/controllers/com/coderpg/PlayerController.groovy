@@ -31,9 +31,10 @@ class PlayerController {
                 if(params?.password == Player.findByCodename(params.codename).password ){
                     playerInstance = Player.findByCodename(params.codename)
                     session.user = playerInstance
-                    redirect uri: "/player/"
+                    redirect uri: "/player/index"
                 }
             }else{
+                flash.message = "Incorrect Username/Password"
                 forward controller: "admin", action: "login", params: params
             }
         }
@@ -132,7 +133,7 @@ class PlayerController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'player.label', default: 'Player'), playerInstance.id])
+        flash.message = "Your Warrior Profile is Updated!"
         session.user = playerInstance
         redirect(action: "profile")
     }
