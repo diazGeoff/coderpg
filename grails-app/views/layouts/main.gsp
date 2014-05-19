@@ -18,15 +18,67 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
-		<g:layoutHead/>
+        <link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}" type="text/css">
+        <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.css')}" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+        <g:javascript src="jquery.min.js"/>
+        <g:javascript src="smoothscroll.js"/>
+
+        <g:layoutHead/>
 		<r:layoutResources />
 	</head>
-	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
-		<g:layoutBody/>
+	<body data-spy="scroll" data-offset="0" data-target="#navigation">
+
+    <!-- Fixed navbar -->
+    <div id="navigation" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><b>CodeRPG</b></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                <g:if test="${session?.user}">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">${session?.user?.name}      <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="/coderpg/player/quests/">Quest</a></li>
+                            <li class="divider"></li>
+                            <li><g:link action="logout"><b>Logout</b></g:link></li>
+                        </ul>
+                    </li>
+                </g:if>
+                    <g:else>
+                        <li><g:link action="login">Login</g:link></li>
+                        <li><g:link action="create">Sign-Up</g:link></li>
+                    </g:else>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <g:layoutBody/>
+
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>
-		<r:layoutResources />
+        <g:javascript src="bootstrap.js"/>
+        <r:layoutResources />
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="assets/js/bootstrap.js"></script>
+        <script>
+            $('.carousel').carousel({
+                interval: 3500
+            })
+        </script>
 	</body>
 </html>
