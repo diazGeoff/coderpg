@@ -6,7 +6,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
 <g:if test="${flash.message}">
     <div class="message" role="status">${flash.message}</div>
 </g:if>
@@ -28,7 +27,7 @@
         </g:each>
     </g:else>
 </ul>
-=======
+
 <div id="headerwrap">
     <div class="container">
         <div class="col-xs-3">
@@ -60,6 +59,6 @@
        </g:each>
     </div>
 </div>
->>>>>>> d9750df4ab302b8e6d13e058accd9f69f741792c
+
 </body>
 </html>
