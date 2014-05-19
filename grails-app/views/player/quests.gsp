@@ -20,8 +20,16 @@
 
 <div id="intro">
     <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h2>
+                        Choose your DESTINY ...
+                    </h2>
+                </div>
+            </div>
+        <hr>
         <g:each in="${questList?}" var="quest">
-        <div class="row">
+        <div class="row margin-list">
             <div class="col-lg-1"></div>
             <div class="col-lg-3 img-centered">
                 <a href="/coderpg/player/mission/${quest.id}">
@@ -30,7 +38,7 @@
                 </a>
 
             </div>
-            <div class="col-lg-7 tpad">
+            <div class="col-lg-6">
                 <p class="lead text-justify">${quest.description}</p>
             </div>
          </div>

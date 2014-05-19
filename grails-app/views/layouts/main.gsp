@@ -47,7 +47,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">${session?.user?.name}      <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
+                            <li><g:link action="index">Profile</g:link></li>
                             <li><a href="/coderpg/player/quests/">Quest</a></li>
                             <li class="divider"></li>
                             <li><g:link action="logout"><b>Logout</b></g:link></li>

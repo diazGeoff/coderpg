@@ -40,18 +40,18 @@ li {
 	float: none;
 	margin: 0 auto;
 }
+/*
 .img-centered {
 	margin: 35px 0px 25px;
 }
+*/
 
 .img-centered img {
 	margin: 0 auto;
-
 }
 
-.tpad {
-    margin-top: -45px;
+.margin-list {
+    margin: 35px 0 45px;
 }
-
 
 
