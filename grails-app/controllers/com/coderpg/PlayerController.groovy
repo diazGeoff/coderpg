@@ -4,7 +4,7 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class PlayerController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST", validate: "POST"]
 
     def index() {
         if(!session.user || session.admin){
@@ -87,25 +87,66 @@ class PlayerController {
         [playerInstance: playerInstance]
     }*/
 
-    def missions(Long id) {
-        def missionList
-        if(id){
-            missionList = Mission.where{
-                quest.id == id
-            }
+    def validate(){
+        if(params.check == "true"){
+            params.check = true
         }else{
-            missionList = Mission.where {
-                quest.chosenclass.id == Player.get(session.user.id).chosenclass.id
-            }
+            params.check = false
         }
-        [missionList: missionList]
+        def missionTaken = new PlayerMissions(params)
+        missionTaken.properties['hasTaken'] = params.check
+        if(!missionTaken.save(flush: true)){
+            flash.message = missionTaken.errors
+            redirect(action: "quests")
+            return
+        }
+        flash.message = "You have " + ((params.check) ? "passed" : "failed") + " the problem"
+        redirect(action: "quests")
+        return
     }
 
-    def quests() {
-        def questList = Quest.where{
-            chosenclass.id == Player.get(session.user.id).chosenclass.id
+    def mission(Long id, Long missionId) {
+        def mission
+        def status = PlayerMissions.withCriteria {
+            and{
+                eq('player.id', session.user.id)
+                eq('mission.id', missionId)
+            }
         }
-        [questList: questList]
+        def sessionId = Player.get(session.user.id).chosenclass.id
+        def questId = Quest.findById(id)?.chosenclass?.id
+        if(questId != sessionId) {
+            redirect(action: "quests")
+            return
+        }
+        mission = Mission.get(missionId)
+        render(view: "mission", model: [mission: mission, status: status])
+    }
+
+    def quests(Long id) {
+        if(id){
+            def missionList
+            def sessionId = Player.get(session.user.id).chosenclass.id
+            def questId = Quest.findById(id)?.chosenclass?.id
+            if(id == null) {
+                missionList = Mission.where {
+                    quest.chosenclass.id == sessionId
+                }
+            }else if( questId == null || questId != sessionId){
+                redirect(action: "quests")
+            }else if(questId == sessionId){
+                missionList = Mission.where {
+                    quest.id == id
+                }
+
+            }
+            [missionList: missionList]
+        }else{
+            def questList = Quest.where{
+                chosenclass.id == Player.get(session.user.id).chosenclass.id
+            }
+            [questList: questList]
+        }
     }
 
     def update(Long id, Long version) {
