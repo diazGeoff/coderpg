@@ -6,6 +6,8 @@ class PlayerController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST", validate: "POST"]
 
+    def playerService
+
     def notLoggedIn(){
         if(!session.user){
             redirect controller: "player"
@@ -84,6 +86,8 @@ class PlayerController {
             redirect(action: "quests")
             return
         }
+        (params.check) ? playerService.addPoints(Integer.parseInt(params.points), session.user.id) : 1
+        session.user = Player.get(session.user.id)
         flash.message = "You have " + ((params.check) ? "passed" : "failed") + " the problem"
         redirect(action: "quests")
         return

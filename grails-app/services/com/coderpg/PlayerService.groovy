@@ -2,11 +2,9 @@ package com.coderpg
 
 class PlayerService {
 
-    public validate(def obj,String str) {
-        if(str == "passed"){
-            def playerMissions = new PlayerMissions()
-        }else{
-
-        }
+    def addPoints(int points, Long id) {
+        def player = Player.get(id)
+        player.properties['points'] = player.points + points
+        player.save(flush: true)
     }
 }

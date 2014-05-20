@@ -5,6 +5,7 @@ class Mission {
     String description
     String input
     String output
+    String points
 
     static belongsTo = [quest: Quest]
 
@@ -13,5 +14,6 @@ class Mission {
         description blank: false
         input blank: false
         output blank: false
+        points blank: false
     }
 }

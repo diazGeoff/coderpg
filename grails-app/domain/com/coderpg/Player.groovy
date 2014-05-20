@@ -9,6 +9,7 @@ class Player {
     GenderChoice gender
     String info
     Class chosenclass
+    int points
 
     enum GenderChoice {
         Male, Female
@@ -22,5 +23,8 @@ class Player {
         birthdate blank: false
         gender blank: false
         chosenclass nullable: false
+    }
+    static mapping = {
+        points defaultValue: 0
     }
 }
