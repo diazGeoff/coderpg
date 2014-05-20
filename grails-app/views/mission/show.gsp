@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list mission">
 			
+				<g:if test="${missionInstance?.name}">
+				<li class="fieldcontain">
+					<span id="name-label" class="property-label"><g:message code="mission.name.label" default="Name" /></span>
+					
+						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${missionInstance}" field="name"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${missionInstance?.description}">
 				<li class="fieldcontain">
 					<span id="description-label" class="property-label"><g:message code="mission.description.label" default="Description" /></span>
@@ -41,20 +50,20 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${missionInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="mission.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${missionInstance}" field="name"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${missionInstance?.output}">
 				<li class="fieldcontain">
 					<span id="output-label" class="property-label"><g:message code="mission.output.label" default="Output" /></span>
 					
 						<span class="property-value" aria-labelledby="output-label"><g:fieldValue bean="${missionInstance}" field="output"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${missionInstance?.points}">
+				<li class="fieldcontain">
+					<span id="points-label" class="property-label"><g:message code="mission.points.label" default="Points" /></span>
+					
+						<span class="property-value" aria-labelledby="points-label"><g:fieldValue bean="${missionInstance}" field="points"/></span>
 					
 				</li>
 				</g:if>

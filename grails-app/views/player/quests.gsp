@@ -31,6 +31,7 @@
 
 <div id="intro">
     <div class="container">
+<<<<<<< HEAD
             <div class="row">
         <g:if test="${questList}">
                 <div class="col-lg-4">
@@ -80,6 +81,41 @@
                 </div>
             </div>
         </g:each>
+=======
+        <g:if test="${questList}">
+            <g:each in="${questList?}" var="quest">
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-3 img-centered">
+                    <a href="/coderpg/player/quests/${quest.id}">
+                        <img src="http://placehold.it/150x150" class="img-responsive center-block" alt="Quest LOGO" />
+                        <h3 class="text-center">${quest.name}</h3>
+                    </a>
+
+                </div>
+                <div class="col-lg-7 tpad">
+                    <p class="lead text-justify">${quest.description}</p>
+                </div>
+             </div>
+           </g:each>
+        </g:if>
+        <g:else>
+            <g:each in="${missionList?}" var="mission">
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-3 img-centered">
+                        <a href="/coderpg/player/quests/${mission.quest.id}/mission/${mission.id}">
+                            <img src="http://placehold.it/150x150" class="img-responsive center-block" alt="Quest LOGO" />
+                            <h3 class="text-center">${mission.name}</h3>
+                        </a>
+
+                    </div>
+                    <div class="col-lg-7 tpad">
+                        <p class="lead text-justify">${mission.description}</p>
+                    </div>
+                </div>
+            </g:each>
+>>>>>>> 547972e9bcaffb6b8ea46391e4e7f04427cf6d9e
         </g:else>
     </div>
 </div>

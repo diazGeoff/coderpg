@@ -24,13 +24,15 @@
 				<thead>
 					<tr>
 					
+						<g:sortableColumn property="name" title="${message(code: 'mission.name.label', default: 'Name')}" />
+					
 						<g:sortableColumn property="description" title="${message(code: 'mission.description.label', default: 'Description')}" />
 					
 						<g:sortableColumn property="input" title="${message(code: 'mission.input.label', default: 'Input')}" />
 					
-						<g:sortableColumn property="name" title="${message(code: 'mission.name.label', default: 'Name')}" />
-					
 						<g:sortableColumn property="output" title="${message(code: 'mission.output.label', default: 'Output')}" />
+					
+						<g:sortableColumn property="points" title="${message(code: 'mission.points.label', default: 'Points')}" />
 					
 						<th><g:message code="mission.quest.label" default="Quest" /></th>
 					
@@ -40,13 +42,15 @@
 				<g:each in="${missionInstanceList}" status="i" var="missionInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${missionInstance.id}">${fieldValue(bean: missionInstance, field: "description")}</g:link></td>
+						<td><g:link action="show" id="${missionInstance.id}">${fieldValue(bean: missionInstance, field: "name")}</g:link></td>
+					
+						<td>${fieldValue(bean: missionInstance, field: "description")}</td>
 					
 						<td>${fieldValue(bean: missionInstance, field: "input")}</td>
 					
-						<td>${fieldValue(bean: missionInstance, field: "name")}</td>
-					
 						<td>${fieldValue(bean: missionInstance, field: "output")}</td>
+					
+						<td>${fieldValue(bean: missionInstance, field: "points")}</td>
 					
 						<td>${fieldValue(bean: missionInstance, field: "quest")}</td>
 					

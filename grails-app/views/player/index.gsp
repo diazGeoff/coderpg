@@ -32,7 +32,7 @@
             </div>
             <div class="col-lg-5">
                 <div class="col-lg-6">
-                    <h3>200 Points</h3>
+                    <h3>${session.user.points} Points</h3>
                 </div>
                 <div class="col-lg-6">
                     <img src="http://placehold.it/140x140" alt="badge-logo" class="img-circle">

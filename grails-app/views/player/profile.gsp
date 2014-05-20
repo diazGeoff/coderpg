@@ -7,13 +7,6 @@
 </head>
 
 <body>
-<div class="nav" role="navigation">
-    <ul>
-        <li><a class="home" href="${createLink(uri: '/player')}">Home</a></li>
-        <li><g:link action="profile">Profile</g:link></li>
-        <li><g:link action="quests">Quests</g:link></li>
-    </ul>
-</div>
 %{--<h1>Edit Your Profile</h1>
 <g:form action="update" method="post">
     <g:hiddenField name="id" value="${session.user.id}"/>
