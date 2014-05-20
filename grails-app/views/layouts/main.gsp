@@ -48,14 +48,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">${session?.user?.name}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-<<<<<<< HEAD
-                            <li><g:link action="index">Profile</g:link></li>
-=======
                             <li><a href="/coderpg/player/">Profile</a></li>
->>>>>>> 547972e9bcaffb6b8ea46391e4e7f04427cf6d9e
                             <li><a href="/coderpg/player/quests/">Quest</a></li>
                             <li class="divider"></li>
-                            <li><g:link action="logout"><b>Logout</b></g:link></li>
+                            <li><g:link controller="player" action="logout"><b>Logout</b></g:link></li>
                         </ul>
                     </li>
                 </g:if>
@@ -68,7 +64,7 @@
                              <li><g:link action="class">Class</g:link></li>
                              <li><g:link controller="quest">Quest</g:link></li>
                              <li class="divider"></li>
-                             <li><g:link action="logout"><b>Logout</b></g:link></li>
+                             <li><g:link controller="admin" action="logout"><b>Logout</b></g:link></li>
                          </ul>
                      </li>
                  </g:elseif>
