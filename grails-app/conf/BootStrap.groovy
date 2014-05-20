@@ -1,5 +1,6 @@
 import com.coderpg.Admin
 import com.coderpg.Class
+import com.coderpg.Mission
 
 class BootStrap {
 
