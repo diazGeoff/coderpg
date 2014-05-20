@@ -55,13 +55,11 @@
              </div>
              <div class="col-lg-2">
                  <div class="btn-group pull-right">
-                     %{--<a href="/coderpg/quest/show/${questInstance.id}"><button type="button" class="btn btn-default">Edit</button></a>--}%
-                     %{--<form action="delete" method="post">
-                         <g:hiddenField name="questId" value="${questInstance.id}" />
-                        <button type="submit" class="btn btn-default">Delete</button>
-                     </form>--}%
-                     <g:link class="edit btn btn-default" action="edit" id="${questInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                     <g:actionSubmit class="delete btn btn-default" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    <g:form>
+                         <g:hiddenField name="id" value="${questInstance?.id}" />
+                         <g:link class="edit btn btn-default" action="edit" id="${questInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                         <g:actionSubmit class="delete btn btn-default" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    </g:form>
                  </div>
              </div>
         </div>
