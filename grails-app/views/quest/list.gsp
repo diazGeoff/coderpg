@@ -34,7 +34,7 @@
 				<g:each in="${questInstanceList}" status="i" var="questInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${questInstance.id}">${fieldValue(bean: questInstance, field: "name")}</g:link></td>
+						<td><a href="/coderpg/quest/show/${questInstance?.id}">${fieldValue(bean: questInstance, field: "name")}</a></td>
 					
 						<td>${fieldValue(bean: questInstance, field: "description")}</td>
 					

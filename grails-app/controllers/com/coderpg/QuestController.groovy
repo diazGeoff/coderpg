@@ -9,13 +9,16 @@ class QuestController {
     def notLoggedIn(){
         if(!session.admin){
             redirect controller: "player"
-            return
+            return false
+        }else{
+            return true
         }
     }
 
     def index() {
-        notLoggedIn()
-        (session.admin) ? redirect(action: 'list', params: params) : 1
+        if(notLoggedIn() ) {
+            redirect(action: "list")
+        }
     }
 
     def list(Long id) {
@@ -42,29 +45,33 @@ class QuestController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'quest.label', default: 'Quest'), questInstance.id])
-        redirect(action: "show", id: questInstance.id)
+        redirect(action: "list")
     }
 
     def show(Long id) {
-        def questInstance = Quest.get(id)
-        if (!questInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'quest.label', default: 'Quest'), id])
-            redirect(action: "list")
-            return
-        }
+        if(notLoggedIn() ) {
+            def questInstance = Quest.get(id)
+            if (!questInstance) {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'quest.label', default: 'Quest'), id])
+                redirect(action: "list")
+                return
+            }
 
-        [questInstance: questInstance]
+            [questInstance: questInstance]
+        }
     }
 
     def edit(Long id) {
-        def questInstance = Quest.get(id)
-        if (!questInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'quest.label', default: 'Quest'), id])
-            redirect(action: "list")
-            return
-        }
+        if(notLoggedIn() ) {
+            def questInstance = Quest.get(id)
+            if (!questInstance) {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'quest.label', default: 'Quest'), id])
+                redirect(action: "list")
+                return
+            }
 
-        [questInstance: questInstance]
+            [questInstance: questInstance]
+        }
     }
 
     def update(Long id, Long version) {
@@ -93,7 +100,7 @@ class QuestController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'quest.label', default: 'Quest'), questInstance.id])
-        redirect(action: "show", id: questInstance.id)
+        redirect(action: "list")
     }
 
     def delete(Long id) {

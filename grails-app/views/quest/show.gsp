@@ -63,7 +63,7 @@
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${questInstance?.id}" />
-					<g:link class="edit" action="edit" id="${questInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<a href="/coderpg/quest/edit/${questInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></a>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
