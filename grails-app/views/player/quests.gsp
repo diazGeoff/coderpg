@@ -28,11 +28,12 @@
                 </div>
             </div>
         <hr>
+        <g:if test="${questList}">
         <g:each in="${questList?}" var="quest">
         <div class="row margin-list">
             <div class="col-lg-1"></div>
             <div class="col-lg-3 img-centered">
-                <a href="/coderpg/player/mission/${quest.id}">
+                <a href="/coderpg/player/quests/${quest.id}">
                     <img src="http://placehold.it/150x150" class="img-responsive center-block" alt="Quest LOGO" />
                     <h3 class="text-center">${quest.name}</h3>
                 </a>
@@ -43,6 +44,7 @@
             </div>
          </div>
        </g:each>
+        </g:if>
     </div>
 </div>
 </body>

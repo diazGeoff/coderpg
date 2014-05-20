@@ -17,27 +17,26 @@
 </g:form>--}%
 <div id="footerwrap">
     <div class="container">
-        <g:if test="${flash.message}">
-            <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-6">
-                    <div class="alert alert-danger">
-                        <label for="feedback-msg" class="feedback-msg">${flash.message}</label>
-                    </div>
-                </div>
-            </div>
-        </g:if>
         <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-5">
-                    <h3>Start Working on challenges now!</h3>
+
+                <div>
+                    <h3 class="text-center">Start Working on challenges now!</h3>
                 </div>
         </div>
         <div class="row">
-            <div class="col-lg-2"></div>
+
+            <div class="col-lg-3"></div>
             <div class="col-lg-6">
-                <h3>Login</h3>
                 <br>
+                <p class="text-center lead">Login now!</p>
+                <hr/>
+                <g:if test="${flash.message}">
+                    <div class="row">
+                       <div class="alert alert-danger">
+                          <label for="feedback-msg" class="feedback-msg">${flash.message}</label>
+                       </div>
+                    </div>
+                </g:if>
                 <form role="form" action="login" method="post" enctype="plain">
                     <g:render template="loginForm" />
                     <br>

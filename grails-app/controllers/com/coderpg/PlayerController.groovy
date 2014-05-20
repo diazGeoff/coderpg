@@ -31,7 +31,7 @@ class PlayerController {
                 if(params?.password == Player.findByCodename(params.codename).password ){
                     playerInstance = Player.findByCodename(params.codename)
                     session.user = playerInstance
-                    redirect uri: "/player/index"
+                    redirect uri: "/player/"
                 }
             }else{
                 flash.message = "Incorrect Username/Password"
