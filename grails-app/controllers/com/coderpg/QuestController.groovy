@@ -96,8 +96,8 @@ class QuestController {
         redirect(action: "show", id: questInstance.id)
     }
 
-    def delete(Long id) {
-        def questInstance = Quest.get(id)
+    def delete() {
+        def questInstance = Quest.get(params.questId)
         if (!questInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'quest.label', default: 'Quest'), id])
             redirect(action: "list")
@@ -106,11 +106,11 @@ class QuestController {
 
         try {
             questInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'quest.label', default: 'Quest'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'quest.label', default: 'Quest')])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'quest.label', default: 'Quest'), id])
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'quest.label', default: 'Quest')])
             redirect(action: "show", id: id)
         }
     }

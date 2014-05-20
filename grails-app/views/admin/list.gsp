@@ -1,4 +1,3 @@
-
 <%@ page import="com.coderpg.Admin" %>
 <!DOCTYPE html>
 <html>
@@ -23,7 +22,6 @@
 			<table>
 				<thead>
 					<tr>
-					
 						<g:sortableColumn property="username" title="${message(code: 'admin.username.label', default: 'Username')}" />
 					
 						<g:sortableColumn property="password" title="${message(code: 'admin.password.label', default: 'Password')}" />

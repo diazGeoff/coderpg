@@ -60,7 +60,7 @@
        <g:else test="${missionList}">
         <div class="col-lg-4">
             <h2>
-                ${missionList.list()[0].quest.name}
+                ${missionList.list()[0]?.quest?.name}
             </h2>
         </div>
         </div>

@@ -1,7 +1,22 @@
 <%@ page import="com.coderpg.Quest" %>
 
+<div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" name="name" class="form-control" id="email1" placeholder="Enter email" maxlength="20" required="" value="${questInstance?.name}">
+</div>
+<div class="form-group">
+    <label for="info">Information</label>
+    <textarea name="description" class="form-control" rows="4">${questInstance?.description}</textarea>
+</div>
+<div class="fieldcontain">
+    <label for="chosenclass">
+        Class
+        <span class="required-indicator">*</span>
+    </label>
+    <g:select id="chosenclass" name="chosenclass.id" required="" optionKey="id" optionValue="name" value="${questInstance?.chosenclass?.id}" from="${com.coderpg.Class.list()}"/>
+</div>
 
-
+%{--
 <div class="fieldcontain ${hasErrors(bean: questInstance, field: 'name', 'error')} required">
 	<label for="name">
 		<g:message code="quest.name.label" default="Name" />
@@ -43,3 +58,4 @@
 
 </div>
 
+--}%

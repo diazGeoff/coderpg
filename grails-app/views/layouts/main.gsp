@@ -43,9 +43,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+
                 <g:if test="${session?.user}">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">${session?.user?.name}      <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">${session?.user?.name}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><g:link action="index">Profile</g:link></li>
                             <li><a href="/coderpg/player/quests/">Quest</a></li>
@@ -54,10 +55,25 @@
                         </ul>
                     </li>
                 </g:if>
-                    <g:else>
-                        <li><g:link action="login">Login</g:link></li>
-                        <li><g:link action="create">Sign-Up</g:link></li>
-                    </g:else>
+
+                <g:elseif test="${session?.admin}">
+                     <li class="dropdown">
+                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">${session?.admin?.username}<b class="caret"></b></a>
+                         <ul class="dropdown-menu">
+                             <li><a class="home" href="${createLink(uri: '/admin')}">Home</a></li>
+                             <li><g:link action="class">Class</g:link></li>
+                             <li><g:link controller="quest">Quest</g:link></li>
+                             <li class="divider"></li>
+                             <li><g:link action="logout"><b>Logout</b></g:link></li>
+                         </ul>
+                     </li>
+                 </g:elseif>
+
+                 <g:else>
+                    <li><g:link action="login">Login</g:link></li>
+                    <li><g:link action="create">Sign-Up</g:link></li>
+                 </g:else>
+
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

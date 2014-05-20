@@ -40,11 +40,6 @@ li {
 	float: none;
 	margin: 0 auto;
 }
-/*
-.img-centered {
-	margin: 35px 0px 25px;
-}
-*/
 
 .img-centered img {
 	margin: 0 auto;
@@ -54,4 +49,14 @@ li {
     margin: 35px 0 45px;
 }
 
+.table-header th {
+    font-size: 23px;
+    height: 65px;
+    text-align: center;
+}
+
+.table-header td {
+    height: 55px;
+    text-align: center;
+}
 
