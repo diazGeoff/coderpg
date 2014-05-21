@@ -8,7 +8,7 @@ class PlayerController {
 
     def playerService
 
-    def beforeInterceptor = [action: this.&checkIfLoggedIn, except: ['login', 'create'] ]
+    def beforeInterceptor = [action: this.&checkIfLoggedIn, except: ['login', 'create', 'save'] ]
 
 
     def checkIfLoggedIn(){
