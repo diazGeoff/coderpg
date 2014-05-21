@@ -43,13 +43,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-
                 <g:if test="${session?.user}">
+                    <li>
+                        <a href="/coderpg/player/quests/"><b>Take a Quest</b></a>
+                    </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">${session?.user?.name}<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>${session?.user?.name}</b><b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="/coderpg/player/">Profile</a></li>
-                            <li><a href="/coderpg/player/quests/">Quest</a></li>
                             <li class="divider"></li>
                             <li><g:link controller="player" action="logout"><b>Logout</b></g:link></li>
                         </ul>
@@ -61,8 +62,9 @@
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">${session?.admin?.username}<b class="caret"></b></a>
                          <ul class="dropdown-menu">
                              <li><a class="home" href="${createLink(uri: '/admin')}">Home</a></li>
-                             <li><g:link action="class">Class</g:link></li>
+                             <li><a href="/coderpg/admin/classes">Class</a></li>
                              <li><g:link controller="quest">Quest</g:link></li>
+                             <li><a href="/coderpg/mission/list">Mission</a></li>
                              <li class="divider"></li>
                              <li><g:link controller="admin" action="logout"><b>Logout</b></g:link></li>
                          </ul>

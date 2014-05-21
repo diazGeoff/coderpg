@@ -25,8 +25,6 @@
                 <div class="col-lg-7 prof-info">
                     <ul class="codename">
                         <li><g:link action="profile">${session?.user?.codename}</g:link></li>
-                        <li>Ruby Samurai</li>
-                        <li>Warrior</li>
                     </ul>
                 </div>
             </div>

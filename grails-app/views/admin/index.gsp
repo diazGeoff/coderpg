@@ -17,12 +17,7 @@
     <div id="intro">
         <div class="container">
             <div class="row">
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-default">All</button>
-                    <button type="button" class="btn btn-default">Javascript</button>
-                    <button type="button" class="btn btn-default">Ruby</button>
-                    <button type="button" class="btn btn-default">Groovy</button>
-                </div>
+                <h3>Warrior List</h3>
             </div>
             <br>
             <div class="row">

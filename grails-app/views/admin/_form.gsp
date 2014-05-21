@@ -1,7 +1,5 @@
 <%@ page import="com.coderpg.Admin" %>
 
-
-
 <div class="fieldcontain ${hasErrors(bean: adminInstance, field: 'username', 'error')} required">
 	<label for="username">
 		<g:message code="admin.username.label" default="Username" />

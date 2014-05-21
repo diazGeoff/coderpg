@@ -36,36 +36,36 @@
 %{--</g:form>--}%
 
     <div id="footerwrap">
-        <div class="container">
-            <g:if test="${flash.message}">
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-4">
-                        <div class="alert alert-danger">
-                            ${flash.message}
-                        </div>
+    <div class="container">
+        <g:if test="${flash.message}">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4">
+                    <div class="alert alert-danger">
+                        ${flash.message}
                     </div>
                 </div>
-            </g:if>
-            <div class="row">
-                    <h3 class="text-center">CodeRPG helps you to improve your skills!</h3>
             </div>
-            <div class="row">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6">
+        </g:if>
+        <div class="row">
+            <h3 class="text-center">CodeRPG helps you to improve your skills!</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <br>
+                <p class="text-center lead">Sign-up now and prepare to fight.</p>
+                <hr/>
+                <form role="form" action="save" method="post" enctype="plain">
+                    <g:render template="form" />
                     <br>
-                    <p class="text-center lead">Sign-up now and prepare to fight.</p>
-                    <hr/>
-                    <form role="form" action="save" method="post" enctype="plain">
-                        <g:render template="form" />
-                        <br>
-                        <button type="submit" class="btn btn-large btn-success btn-block" name="create"><h4>Sign me up on CodeRPG!</h4></button>
-                    </form>
-                </div>
-                <div class="col-lg-6"></div>
+                    <button type="submit" class="btn btn-large btn-success btn-block" name="create"><h4>Sign me up on CodeRPG!</h4></button>
+                </form>
             </div>
+            <div class="col-lg-6"></div>
         </div>
     </div>
+</div>
 </div>
 </div>
 </body>

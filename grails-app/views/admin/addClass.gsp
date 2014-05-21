@@ -6,17 +6,36 @@
 </head>
 
 <body>
-<g:if test="${flash.message}">
-    <div class="message" role="status">${flash.message}</div>
-</g:if>
-<h1>Add Your Class...</h1>
-<g:form action="addClass" method="post">
-    <fieldset class="form">
-        <g:render template="addClass" />
-    </fieldset>
-    <fieldset class="buttons">
-        <g:submitButton name="submit" value="Add"/>
-    </fieldset>
-</g:form>
+<div id="intro">
+    <div class="container">
+        <g:if test="${flash.message}">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4">
+                    <div class="alert alert-danger">
+                        ${flash.message}
+                    </div>
+                </div>
+            </div>
+        </g:if>
+        <div class="row">
+            <h3 class="text-center">Create New Class</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <br>
+                <hr/>
+                <form role="form" action="addClass" method="post" enctype="plain">
+                    <g:render template="addClass" model="[classInstance: classes]" />
+                    <br>
+                    <button type="submit" class="btn btn-large btn-success btn-block" name="create"><h4>Create your Class</h4></button>
+                </form>
+            </div>
+            <div class="col-lg-6"></div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
