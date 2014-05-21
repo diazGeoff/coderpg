@@ -8,56 +8,58 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-mission" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="list-mission" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<table>
-				<thead>
-					<tr>
-					
-						<g:sortableColumn property="name" title="${message(code: 'mission.name.label', default: 'Name')}" />
-					
-						<g:sortableColumn property="description" title="${message(code: 'mission.description.label', default: 'Description')}" />
-					
-						<g:sortableColumn property="input" title="${message(code: 'mission.input.label', default: 'Input')}" />
-					
-						<g:sortableColumn property="output" title="${message(code: 'mission.output.label', default: 'Output')}" />
-					
-						<g:sortableColumn property="points" title="${message(code: 'mission.points.label', default: 'Points')}" />
-					
-						<th><g:message code="mission.quest.label" default="Quest" /></th>
-					
-					</tr>
-				</thead>
-				<tbody>
-				<g:each in="${missionInstanceList}" status="i" var="missionInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${missionInstance.id}">${fieldValue(bean: missionInstance, field: "name")}</g:link></td>
-					
-						<td>${fieldValue(bean: missionInstance, field: "description")}</td>
-					
-						<td>${fieldValue(bean: missionInstance, field: "input")}</td>
-					
-						<td>${fieldValue(bean: missionInstance, field: "output")}</td>
-					
-						<td>${fieldValue(bean: missionInstance, field: "points")}</td>
-					
-						<td>${fieldValue(bean: missionInstance, field: "quest")}</td>
-					
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
+    <div id="intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>
+                        Mission List
+                    </h2>
+                </div>
+                <div class="col-lg-6">
+                    <div class="btn-group pull-right">
+                        <a href="/coderpg/mission/list" class="btn btn-default">All</a>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                                Quest
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <g:each in="${com.coderpg.Quest.list()}" var="quest">
+                                    <li><a href="/coderpg/mission/list/${quest.id}">${quest.name}</a></li>
+                                </g:each>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <g:each in="${missionInstanceList}" var="missionInstance">
+                <div class="row margin-list">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-3 img-centered">
+                        <a href="/coderpg/quest/show/${missionInstance?.id}">
+                            <img src="http://placehold.it/150x150" class="img-responsive center-block" alt="Quest LOGO" />
+                            <h3 class="text-center">${missionInstance?.name}</h3>
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <p class="lead text-justify">${missionInstance?.description}</p>
+                        <br />
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="btn-group pull-right">
+                            <g:form>
+                                <g:hiddenField name="id" value="${missionInstance?.id}" />
+                                <g:link class="edit btn btn-primary" controller="mission" action="edit" id="${missionInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                                <g:actionSubmit class="delete btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                            </g:form>
+                        </div>
+                    </div>
+                </div>
+            </g:each>
+
 			<div class="pagination">
 				<g:paginate total="${missionInstanceTotal}" />
 			</div>

@@ -36,13 +36,13 @@
     <label for="email">E-mail</label>
     <input type="email" name="email" class="form-control" id="email1" placeholder="Enter email" value="${session.user.email}">
 </div>
-<div class="fieldcontain">
+<div class="form-group fieldcontain">
     <label for="birthdate">Birthday:</label>
     <g:datePicker name="birthdate" precision="day" value="${session.user.birthdate}"/>
 </div>
-<div class="fieldcontain">
+<div class="form-group fieldcontain">
     <label for="chosenclass">Class</label>
-    <g:select id="chosenclass" name="chosenclass.id" optionValue="name" from="${com.coderpg.Class.list()}" optionKey="id" value="${user.chosenclass.id}" class="many-to-one"/>
+    <g:select id="chosenclass" name="chosenclass.id" optionValue="name" from="${com.coderpg.Class.list()}" optionKey="id" value="${user.chosenclass.id}" class="many-to-one form-control"/>
 </div>
 <div class="form-group">
     <label for="info">Information</label>
