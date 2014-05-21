@@ -8,17 +8,18 @@ class PlayerController {
 
     def playerService
 
-    def notLoggedIn(){
+    def beforeInterceptor = [action: this.&checkIfLoggedIn, except: ['login', 'create'] ]
+
+
+    def checkIfLoggedIn(){
         if(!session.user){
-            redirect controller: "player"
+            redirect controller: "player", action: "login"
             return false
-        }else{
-            return true
         }
     }
 
     def index() {
-        if(!session.user || session.admin){
+        if(!session.user || session.admin) {
             session.admin ? redirect(uri: "/admin/") : redirect(action: "login", params: params)
         }
     }
@@ -33,6 +34,11 @@ class PlayerController {
     def login() {
         if(session.user){
             redirect(uri: '/player/')
+            return
+        }
+        if(session.admin){
+            redirect(uri: '/admin/')
+            return
         }
         if(request.method == 'POST'){
             def playerInstance = new Player()
@@ -55,10 +61,8 @@ class PlayerController {
     }
 
     def profile() {
-        if(notLoggedIn() ) {
-            def player = Player.get(session.user.id)
-            [player: player]
-        }
+        def player = Player.get(session.user.id)
+        [player: player]
     }
 
     def save() {
@@ -94,50 +98,57 @@ class PlayerController {
     }
 
     def mission(Long id, Long missionId) {
-        if(notLoggedIn() ) {
-            def mission
-            def status = PlayerMissions.withCriteria {
-                and {
-                    eq('player.id', session.user.id)
-                    eq('mission.id', missionId)
-                }
+        def mission
+        def status = PlayerMissions.withCriteria {
+            and {
+                eq('player.id', session.user.id)
+                eq('mission.id', missionId)
             }
-            def sessionId = Player.get(session.user.id).chosenclass.id
-            def questId = Quest.findById(id)?.chosenclass?.id
-            if (questId != sessionId) {
-                redirect(action: "quests")
-                return
-            }
-            mission = Mission.get(missionId)
-            render(view: "mission", model: [mission: mission, status: status])
         }
+        def sessionId = Player.get(session.user.id).chosenclass.id
+        def questId = Quest.findById(id)?.chosenclass?.id
+        if (questId != sessionId) {
+            redirect(action: "quests")
+            return
+        }
+        mission = Mission.get(missionId)
+        render(view: "mission", model: [mission: mission, status: status])
+    }
+
+    def changeClass() {
+        def chosenclass = Player.get(session.user.id).chosenclass.id
+        def classList = Class.where{ id != chosenclass }
+        if(request.method == "POST") {
+            playerService.changeClass(Integer.parseInt(params.playerId), Integer.parseInt(params.classId) )
+            session.user = Player.get(params.playerId)
+            redirect(uri: '/player')
+        }
+        [currentClass: Player.get(session.user.id), classList: classList]
     }
 
     def quests(Long id) {
-        if(notLoggedIn() ) {
-            if (id) {
-                def missionList
-                def sessionId = Player.get(session.user.id).chosenclass.id
-                def questId = Quest.findById(id)?.chosenclass?.id
-                if (id == null) {
-                    missionList = Mission.where {
-                        quest.chosenclass.id == sessionId
-                    }
-                } else if (questId == null || questId != sessionId) {
-                    redirect(action: "quests")
-                } else if (questId == sessionId) {
-                    missionList = Mission.where {
-                        quest.id == id
-                    }
+        if (id) {
+            def missionList
+            def sessionId = Player.get(session.user.id).chosenclass.id
+            def questId = Quest.findById(id)?.chosenclass?.id
+            if (id == null) {
+                missionList = Mission.where {
+                    quest.chosenclass.id == sessionId
+                }
+            } else if (questId == null || questId != sessionId) {
+                redirect(action: "quests")
+            } else if (questId == sessionId) {
+                missionList = Mission.where {
+                    quest.id == id
+                }
 
-                }
-                [missionList: missionList]
-            } else {
-                def questList = Quest.where {
-                    chosenclass.id == Player.get(session.user.id).chosenclass.id
-                }
-                [questList: questList]
             }
+            [missionList: missionList]
+        } else {
+            def questList = Quest.where {
+                chosenclass.id == Player.get(session.user.id).chosenclass.id
+            }
+            [questList: questList]
         }
     }
 

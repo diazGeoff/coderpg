@@ -6,17 +6,16 @@ class AdminController {
 
     static allowedMethods = [save: "POST", update: ["POST","GET"], delete: "POST"]
 
-    def adminNotLoggedIn(){
+    def beforeInterceptor = [action: this.&checkIfLoggedIn, except: ['login', 'create'] ]
+
+    def checkIfLoggedIn(){
         if(!session.admin){
             redirect controller: "player"
             return false
-        }else{
-            return true
         }
     }
 
     def addClass() {
-        adminNotLoggedIn()
         if(request.method == 'POST'){
             def newClass = new Class(params)
             if(newClass.save(flush: true)){
@@ -29,7 +28,7 @@ class AdminController {
     }
 
     def index() {
-        adminNotLoggedIn()
+
     }
 
     def logout() {
@@ -51,7 +50,6 @@ class AdminController {
     }
 
     def classes() {
-        adminNotLoggedIn()
         [classes: Class.list()]
     }
 
@@ -71,13 +69,11 @@ class AdminController {
     }
 
     def editClass(Long id) {
-        if(adminNotLoggedIn() ) {
-            if (request.method == "POST") {
-                redirect(action: 'updateClass', params: params)
-            }
-            def classInstance = Class.get(id)
-            [classes: classInstance]
+        if (request.method == "POST") {
+            redirect(action: 'updateClass', params: params)
         }
+        def classInstance = Class.get(id)
+        [classes: classInstance]
     }
 
     def updateClass(Long id, Long version){

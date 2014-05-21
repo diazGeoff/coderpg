@@ -6,39 +6,33 @@ class MissionController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    def adminNotLoggedIn(){
+    def beforeInterceptor = [action: this.&checkIfLoggedIn]
+
+    def checkIfLoggedIn(){
         if(!session.admin){
             redirect controller: "player"
             return false
-        }else{
-            return true
         }
     }
 
     def index() {
-        if(adminNotLoggedIn() ) {
-            redirect(action: "list", params: params)
-        }
+        redirect(action: "list", params: params)
     }
 
     def list(Integer max) {
-        if(adminNotLoggedIn() ) {
-            params.max = Math.min(max ?: 10, 100)
-            [missionInstanceList: Mission.list(params), missionInstanceTotal: Mission.count()]
-        }
+        params.max = Math.min(max ?: 10, 100)
+        [missionInstanceList: Mission.list(params), missionInstanceTotal: Mission.count()]
     }
 
     def create() {
-        if(adminNotLoggedIn() ) {
-            if (params?.quest?.id) {
-                def questList = Quest.where {
-                    chosenclass.id == Quest.get(params.quest.id).chosenclass.id
-                }
-                [missionInstance: new Mission(params), questList: questList]
-            } else {
-                redirect(controller: "quest")
-                return
+        if (params?.quest?.id) {
+            def questList = Quest.where {
+                chosenclass.id == Quest.get(params.quest.id).chosenclass.id
             }
+            [missionInstance: new Mission(params), questList: questList]
+        } else {
+            redirect(controller: "quest")
+            return
         }
     }
 
@@ -54,29 +48,25 @@ class MissionController {
     }
 
     def show(Long id) {
-        if(adminNotLoggedIn() ) {
-            def missionInstance = Mission.get(id)
-            if (!missionInstance) {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'mission.label', default: 'Mission'), id])
-                redirect(action: "list")
-                return
-            }
-
-            [missionInstance: missionInstance]
+        def missionInstance = Mission.get(id)
+        if (!missionInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'mission.label', default: 'Mission'), id])
+            redirect(action: "list")
+            return
         }
+
+        [missionInstance: missionInstance]
     }
 
     def edit(Long id) {
-        if(adminNotLoggedIn() ) {
-            def missionInstance = Mission.get(id)
-            if (!missionInstance) {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'mission.label', default: 'Mission'), id])
-                redirect(action: "list")
-                return
-            }
-
-            [missionInstance: missionInstance]
+        def missionInstance = Mission.get(id)
+        if (!missionInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'mission.label', default: 'Mission'), id])
+            redirect(action: "list")
+            return
         }
+
+        [missionInstance: missionInstance]
     }
 
     def update(Long id, Long version) {
