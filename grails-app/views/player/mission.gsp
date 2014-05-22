@@ -17,9 +17,9 @@
     <h2>${mission.description}</h2>
     <h3>${mission.points} Points</h3>
     <h3>Input</h3>
-    <g:textArea name="input" disabled="" value="${mission.input}"/>
+    <g:textArea name="input" disabled="" value="${input}"/>
     <h3>Output</h3>
-    <g:textArea name="output" disabled="" value="${mission.output}"/>
+    <g:textArea name="output" disabled="" value="${output}"/>
     <g:form action="validate">
         <g:hiddenField name="player.id" value="${session.user.id}" />
         <g:hiddenField name="points" value="${mission.points}"/>

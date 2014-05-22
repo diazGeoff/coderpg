@@ -37,7 +37,14 @@ class MissionController {
     }
 
     def save() {
-        def missionInstance = new Mission(params)
+        def url = servletContext.getRealPath("/")
+        def inputFile = request.getFile('input')
+        def outputFile = request.getFile('output')
+        def inputFilename = inputFile.getOriginalFilename()
+        def outputFilename = outputFile.getOriginalFilename()
+        inputFile.transferTo(new File(url, "/missionProblems/input/" + inputFilename) )
+        outputFile.transferTo(new File(url, "/missionProblems/output/" + outputFilename) )
+        def missionInstance = new Mission(name: params.name, description: params.description, points: params.points, input: inputFilename, output: outputFilename, quest: Quest.get(params.questId))
         if (!missionInstance.save(flush: true)) {
             render(view: "create", model: [missionInstance: missionInstance])
             return

@@ -27,6 +27,15 @@ class AdminController {
         }
     }
 
+    def copy(){
+        render grailsApplication.mainContext.getResource("mission/input/")
+        return
+    }
+
+    def upload(){
+
+    }
+
     def index() {
 
     }

@@ -112,7 +112,21 @@ class PlayerController {
             return
         }
         mission = Mission.get(missionId)
-        render(view: "mission", model: [mission: mission, status: status])
+        render(view: "mission", model: [mission: mission, status: status, input: getInputByMissionId(missionId), output: getOutputByMissionId(missionId)])
+    }
+
+    def getInputByMissionId(Long id){
+        def mission = Mission.get(id)
+        def url = servletContext.getRealPath("/")
+        def inputText = new File(url, "missionProblems/input/" + mission.input).text
+        return inputText
+    }
+
+    def getOutputByMissionId(Long id){
+        def mission = Mission.get(id)
+        def url = servletContext.getRealPath("/")
+        def outputText = new File(url, "missionProblems/output/" + mission.output).text
+        return outputText
     }
 
     def changeClass() {

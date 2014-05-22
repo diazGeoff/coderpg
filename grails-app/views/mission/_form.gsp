@@ -23,7 +23,7 @@
 		<g:message code="mission.input.label" default="Input" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textArea name="input" required="" value="${missionInstance?.input}"/>
+    <input type="file" name="input"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: missionInstance, field: 'output', 'error')} required">
@@ -31,7 +31,7 @@
 		<g:message code="mission.output.label" default="Output" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textArea name="output" required="" value="${missionInstance?.output}"/>
+    <input type="file" name="output"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: missionInstance, field: 'points', 'error')} required">
@@ -47,6 +47,6 @@
 		<g:message code="mission.quest.label" default="Quest" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="quest" name="quest.id" optionValue="name" from="${questList?.list()}" optionKey="id" required="" value="${missionInstance?.quest?.id}" class="many-to-one"/>
+	<g:select id="quest" name="questId" optionValue="name" from="${questList?.list()}" optionKey="id" required="" value="${missionInstance?.quest?.id}" class="many-to-one"/>
 </div>
 
