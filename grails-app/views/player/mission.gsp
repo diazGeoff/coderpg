@@ -33,11 +33,11 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-8">
                         <h2>${mission.name}</h2>
                     </div>
-                    <div class="col-lg-6">
-                        <h2>${mission.points} Exp.</h2>
+                    <div class="col-lg-4">
+                        <h3>${mission.points} Exp.</h3>
                     </div>
                 </div>
                 <hr>
@@ -61,8 +61,14 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                <div class="well">
-
+                <div class="row editor-wrapper">
+                    <div class="well">
+                        <div id="editor">function foo(items) {
+                        var x = "All this is syntax highlighted";
+                        return x;
+                        }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

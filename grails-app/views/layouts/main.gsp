@@ -92,10 +92,12 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="src-min-noconflict/ace.js"></script>
+    %{--<script src="src-noconflict/ace.js"></script>--}%
+    <g:javascript src="src-noconflict/ace.js"/>
     <script>
         var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/twilight");
+        editor.getSession().setUseWorker(false);
+        editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/javascript");
     </script>
     </body>
