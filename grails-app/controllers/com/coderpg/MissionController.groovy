@@ -51,7 +51,7 @@ class MissionController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'mission.label', default: 'Mission'), missionInstance.id])
-        redirect(action: "show", id: missionInstance.id)
+        redirect(action: "index")
     }
 
     def show(Long id) {

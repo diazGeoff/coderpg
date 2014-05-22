@@ -78,13 +78,30 @@ class PlayerController {
     }
 
     def validate(){
+        def missionTaken
+        def missionStatus = PlayerMissions.withCriteria {
+            and {
+                eq('player', Player.get(params.player.id))
+                eq('mission', Mission.get(params.mission.id))
+            }
+        }
         if(params.check == "true"){
             params.check = true
+            params.points = Mission.get(params.mission.id).points
         }else{
             params.check = false
         }
-        def missionTaken = new PlayerMissions(params)
-        missionTaken.properties['hasTaken'] = params.check
+        if(missionStatus.isEmpty()) {
+            missionTaken = new PlayerMissions(params)
+            missionTaken.properties['hasTaken'] = params.check
+        }else{
+            missionTaken = PlayerMissions.get(missionStatus.id[0])
+            if(!missionStatus.hasTaken[0] && params.check){
+                missionTaken.properties['hasTaken'] = params.check
+            }else{
+                params.check = false
+            }
+        }
         if(!missionTaken.save(flush: true)){
             flash.message = missionTaken.errors
             redirect(action: "quests")

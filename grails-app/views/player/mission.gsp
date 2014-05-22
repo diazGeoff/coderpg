@@ -22,7 +22,6 @@
     <g:textArea name="output" disabled="" value="${output}"/>
     <g:form action="validate">
         <g:hiddenField name="player.id" value="${session.user.id}" />
-        <g:hiddenField name="points" value="${mission.points}"/>
         <g:hiddenField name="mission.id" value="${mission.id}"/>
         <select name="check" id="check">
             <option value="true" selected>Passed</option>
