@@ -1,7 +1,5 @@
 <%@ page import="com.coderpg.Mission" %>
 
-
-
 <div class="form-group fieldcontain ${hasErrors(bean: missionInstance, field: 'name', 'error')} required">
 	<label for="name">
 		<g:message code="mission.name.label" default="Name" />
