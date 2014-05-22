@@ -6,7 +6,70 @@
 </head>
 
 <body>
-    <h1>Mission</h1>
+<div id="headerwrap">
+    <div class="container">
+            <div class="col-xs-3">
+                <h2>MISSION</h2>
+            </div>
+            <div class="col-xs-9">
+                <h4>MOVE ME <span class="text-muted">&raquo; Your Travel Companion</span></h4>
+                <p class="lead">Move Me is a unique App designed to help people all over the world to get home quicker, by connecting with your local transport network</p>
+            </div>
+    </div>
+</div>
+
+<div id="intro">
+    <div class="container">
+        <div class="row">
+            <div>
+                <g:if test="${status.hasTaken[0] == true && status != null}">
+                    <h2 class="text-center">Passed This Mission</h2>
+                </g:if>
+                <g:if test="${status.hasTaken[0] == false && status != null}">
+                    <h2 class="text-center">Failed This Mission</h2>
+                </g:if>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>${mission.name}</h2>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2>${mission.points} Exp.</h2>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div>
+                        <p>${mission.description}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div>
+                        <h3>Input</h3>
+                        <p>${mission.input}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <h3>Output</h3>
+                        <p>${mission.output}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="well">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    %{--<h1>Mission</h1>
     <g:if test="${status.hasTaken[0] == true && status != null}">
         <h2>Passed This Mission</h2>
     </g:if>
@@ -29,6 +92,6 @@
             <option value="false">Failed</option>
         </select>
         <g:submitButton name="submit" />
-    </g:form>
+    </g:form>--}%
 </body>
 </html>

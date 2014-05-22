@@ -4,7 +4,6 @@
     <meta name="layout" content="main"/>
     <title>Quest Page</title>
 </head>
-
 <body>
 <div id="headerwrap">
     <div class="container">

@@ -89,14 +89,14 @@
         <g:javascript src="bootstrap.js"/>
         <r:layoutResources />
 
-        <!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript
     ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="assets/js/bootstrap.js"></script>
-        <script>
-            $('.carousel').carousel({
-                interval: 3500
-            })
-        </script>
-	</body>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="src-min-noconflict/ace.js"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/twilight");
+        editor.getSession().setMode("ace/mode/javascript");
+    </script>
+    </body>
 </html>
