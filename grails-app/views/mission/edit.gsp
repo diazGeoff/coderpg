@@ -30,7 +30,7 @@
                     <form role="form" action="update" method="post" enctype="plain">
                         <g:hiddenField name="id" value="${missionInstance?.id}" />
                         <g:hiddenField name="version" value="${missionInstance?.version}" />
-                        <g:render template="form" />
+                        <g:render template="form" model="[missionInstance: missionInstance]"/>
                         <br>
                         <button type="submit" class="btn btn-large btn-success btn-block" name="create"><h4>Update this MISSION!</h4></button>
                     </form>

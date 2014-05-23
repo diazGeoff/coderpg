@@ -7,7 +7,36 @@
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#create-mission" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+    <div id="intro">
+        <div class="container">
+            <g:if test="${flash.message}">
+                <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-4">
+                        <div class="alert alert-danger">
+                            ${flash.message}
+                        </div>
+                    </div>
+                </div>
+            </g:if>
+            <div class="row">
+                <h3 class="text-center">Update Mission</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <br>
+                    <hr/>
+                    <g:uploadForm action="save" >
+                        <g:render template="form" model="[questList: questList]"/>     <br>
+                        <button type="submit" class="btn btn-large btn-success btn-block" name="create"><h4>Create this MISSION!</h4></button>
+                    </g:uploadForm>
+                </div>
+                <div class="col-lg-6"></div>
+            </div>
+        </div>
+    </div>
+	%{--	<a href="#create-mission" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
@@ -34,6 +63,6 @@
 					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 				</fieldset>
 			</g:uploadForm>
-		</div>
+		</div>--}%
 	</body>
 </html>

@@ -1,5 +1,7 @@
 package com.coderpg
 
+import grails.converters.JSON
+import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.dao.DataIntegrityViolationException
 
 class PlayerController {
@@ -22,6 +24,7 @@ class PlayerController {
         if(!session.user || session.admin) {
             session.admin ? redirect(uri: "/admin/") : redirect(action: "login", params: params)
         }
+        [player: Player.get(session.user.id)]
     }
 
     def create() {
@@ -129,21 +132,51 @@ class PlayerController {
             return
         }
         mission = Mission.get(missionId)
-        render(view: "mission", model: [mission: mission, status: status, input: getInputByMissionId(missionId), output: getOutputByMissionId(missionId)])
+        render(view: "mission", model: [mission: mission, status: status, input: getTextByMissionId(missionId, "input"), output: getTextByMissionId(missionId, "output")])
     }
 
     def getInputByMissionId(Long id){
         def mission = Mission.get(id)
-        def url = servletContext.getRealPath("/")
-        def inputText = new File(url, "missionProblems/input/" + mission.input).text
-        return inputText
+        def inputText
+        def jsonObject
+        if(mission != null) {
+            inputText = getTextByMissionId(id, "input")
+            jsonObject = toJson(1, inputText)
+        }else{
+            jsonObject = toJson(0, "")
+        }
+        return jsonObject as JSON
     }
 
     def getOutputByMissionId(Long id){
         def mission = Mission.get(id)
-        def url = servletContext.getRealPath("/")
-        def outputText = new File(url, "missionProblems/output/" + mission.output).text
-        return outputText
+        def outputText
+        def jsonObject
+        if(mission != null) {
+            outputText = getTextByMissionId(id, "output")
+            jsonObject = toJson(1, outputText)
+        }else{
+            jsonObject = toJson(0, "")
+        }
+        return jsonObject as JSON
+    }
+
+    private def getTextByMissionId(Long id, String type){
+        def mission = Mission.get(id)
+        def filename
+        if(type.equalsIgnoreCase("input")){
+            filename = mission.input
+        }else{
+            filename = mission.output
+        }
+        return new File(servletContext.getRealPath("/"), "missionProblems/" + type + "/" + filename).text
+    }
+
+    private def toJson(int status, String input){
+        def jsonObject = new JSONObject()
+        jsonObject.put("status", status).toString()
+        jsonObject.put("data", input).toString()
+        return jsonObject
     }
 
     def changeClass() {

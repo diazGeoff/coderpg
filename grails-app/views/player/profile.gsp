@@ -7,17 +7,6 @@
 </head>
 
 <body>
-%{--<h1>Edit Your Profile</h1>
-<g:form action="update" method="post">
-    <g:hiddenField name="id" value="${session.user.id}"/>
-    <g:hiddenField name="version" value="${session.user.version}"/>
-    <fieldset class="form">
-        <g:render template="editForm" model="[user: player]"/>
-    </fieldset>
-    <fieldset class="buttons">
-        <g:submitButton name="edit" value="Save"/>
-    </fieldset>
-</g:form>--}%
 <div id="headerwrap">
     <div class="container centered">
         <h2>Edit Warrior Profile</h2>

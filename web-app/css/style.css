@@ -60,6 +60,11 @@ li {
     text-align: center;
 }
 
+.padding-editor {
+    padding-left: 20px;
+}
+
+
 #editor {
     position: absolute;
     top: 0;

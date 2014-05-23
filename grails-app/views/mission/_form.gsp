@@ -21,7 +21,7 @@
 		<g:message code="mission.input.label" default="Input" />
 		<span class="required-indicator">*</span>
 	</label>
-    <input type="file" name="input"/>
+    <input type="file" name="input" title="${missionInstance?.input}"/>
 </div>
 
 <div class="form-group fieldcontain ${hasErrors(bean: missionInstance, field: 'output', 'error')} required">
@@ -29,7 +29,7 @@
 		<g:message code="mission.output.label" default="Output" />
 		<span class="required-indicator">*</span>
 	</label>
-    <input type="file" name="output"/>
+    <input type="file" name="output" value="${missionInstance?.output}"/>
 </div>
 
 <div class="form-group fieldcontain ${hasErrors(bean: missionInstance, field: 'points', 'error')} required">

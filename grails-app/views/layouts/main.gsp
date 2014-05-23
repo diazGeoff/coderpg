@@ -99,6 +99,7 @@
         editor.getSession().setUseWorker(false);
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/javascript");
+        editor.setFontSize('15px');
     </script>
     </body>
 </html>

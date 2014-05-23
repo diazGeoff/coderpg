@@ -50,17 +50,17 @@
                 <div class="row">
                     <div>
                         <h3>Input</h3>
-                        <p>${mission.input}</p>
+                        <textarea class="form-control" cols="10" disabled="" rows="4">${input}</textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div>
                         <h3>Output</h3>
-                        <p>${mission.output}</p>
+                        <textarea class="form-control" cols="10" disabled="" rows="4">${output}</textarea>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 padding-editor">
                 <div class="row editor-wrapper">
                     <div class="well">
                         <div id="editor">function foo(items) {
@@ -69,6 +69,15 @@
                         }
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <g:form action="validate">
+                        <g:hiddenField name="player.id" value="${session.user.id}" />
+                        <g:hiddenField name="mission.id" value="${mission.id}"/>
+                        <button type="submit" class="btn btn-large btn-success btn-block" name="submit"><h4>Submit your Code</h4></button>
+                        <br>
+                        <br>
+                    </g:form>
                 </div>
             </div>
         </div>

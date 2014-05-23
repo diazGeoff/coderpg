@@ -24,7 +24,9 @@
                 </div>
                 <div class="col-lg-7 prof-info">
                     <ul class="codename">
-                        <li><g:link action="profile">${session?.user?.codename}</g:link></li>
+                        <li><g:link action="profile">${session?.user?.name}</g:link></li>
+                        <li>${session?.user?.codename}</li>
+                        <li>${player?.chosenclass?.name}</li>
                     </ul>
                 </div>
             </div>

@@ -59,7 +59,7 @@
                  <div class="btn-group pull-right">
                     <g:form>
                          <g:hiddenField name="id" value="${questInstance?.id}" />
-                         <g:link class="edit btn btn-primary" controller="quest" action="edit" id="${questInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                         <a href="/coderpg/quest/edit/${questInstance?.id}" class="edit btn btn-primary">Edit</a>
                          <g:actionSubmit class="delete btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                     </g:form>
                  </div>

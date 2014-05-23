@@ -34,11 +34,8 @@
             <div class="row margin-list">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-3 img-centered">
-                    <a href="/coderpg/quest/show/${classInstance.id}">
                         <img src="http://placehold.it/150x150" class="img-responsive center-block" alt="Quest LOGO" />
                         <h3 class="text-center">${classInstance.name}</h3>
-                    </a>
-
                 </div>
                 <div class="col-lg-6">
                     <p class="lead text-justify">${classInstance?.description}</p>
@@ -47,7 +44,7 @@
                     <div class="btn-group pull-right">
                         <g:form>
                             <g:hiddenField name="id" value="${classInstance?.id}" />
-                            <g:link class="edit btn btn-default" controller="admin" action="editClass" id="${classInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                            <a href="/coderpg/admin/editClass/${classInstance?.id}" class="edit btn btn-default">Edit</a>
                             <g:actionSubmit class="delete btn btn-default" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                         </g:form>
                     </div>
