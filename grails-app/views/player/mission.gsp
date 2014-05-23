@@ -22,10 +22,10 @@
     <div class="container">
         <div class="row">
             <div>
-                <g:if test="${status.hasTaken[0] == true && status != null}">
+                <g:if test="${status.hasTaken == true && status != null}">
                     <h2 class="text-center">Passed This Mission</h2>
                 </g:if>
-                <g:if test="${status.hasTaken[0] == false && status != null}">
+                <g:if test="${status.hasTaken == false && status != null}">
                     <h2 class="text-center">Failed This Mission</h2>
                 </g:if>
             </div>

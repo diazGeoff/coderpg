@@ -19,11 +19,11 @@
 </g:if>
 <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" name="name" class="form-control" id="email1" placeholder="Enter email" maxlength="20" required="" value="${questInstance?.name}">
+    <input type="text" name="name" class="form-control" id="email1" placeholder="Name" maxlength="20" required="" value="${questInstance?.name}">
 </div>
 <div class="form-group">
     <label for="info">Information</label>
-    <textarea name="description" class="form-control" rows="4">${questInstance?.description}</textarea>
+    <textarea name="description" class="form-control" rows="4" placeholder="Information">${questInstance?.description}</textarea>
 </div>
 <div class="fieldcontain">
    <label for="chosenclass">

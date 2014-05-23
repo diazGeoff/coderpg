@@ -4,44 +4,43 @@ class PlayerService {
 
     def addPoints(int points, Long id) {
         def player = Player.get(id)
-        player.properties['points'] = player.points + points
+        player.points += points
         player.save(flush: true)
     }
 
     def changeClass(Long playerId, Long classId) {
-        def getPlayer = Player.get(playerId)
-        def saveCurrentData
-        def saveChangeClass
-        def changeClass = ChangeClass.withCriteria {
+        def player = Player.get(playerId)
+        def changeClass = ClassChanger.createCriteria().get{
             and {
                 eq('player.id', playerId)
                 eq('chosenclass.id', classId)
             }
+            maxResults 1
         }
-        def currentData = ChangeClass.withCriteria {
+        def currentClass = ClassChanger.createCriteria().get {
             and {
                 eq('player.id', playerId)
-                eq('chosenclass.id', getPlayer.chosenclass.id)
+                eq('chosenclass.id', player.chosenclass.id)
             }
+            maxResults 1
         }
-        if(!currentData.isEmpty()){
-            saveCurrentData = ChangeClass.get(currentData?.id[0])
-            saveCurrentData.properties['currentpoints'] = getPlayer.points
-            saveCurrentData.save(flush: true)
+        if(currentClass){
+            currentClass.currentpoints = player.points
+            currentClass.save(flush: true)
         }else{
-            saveCurrentData = new ChangeClass(player: getPlayer, chosenclass: getPlayer.chosenclass, currentpoints: getPlayer.points)
-            saveCurrentData.save(flush: true) ? System.out.println("Saved") : System.out.println("Failed")
+            currentClass = new ClassChanger(player: player, chosenclass: player.chosenclass, currentpoints: player.points)
+            currentClass.save(flush: true) ? System.out.println("Saved") : System.out.println("Failed")
         }
-        if(!changeClass.isEmpty()){
-            getPlayer.properties['chosenclass'] =  Class.get(classId)
-            getPlayer.properties['points'] = changeClass.currentpoints[0]
-            getPlayer.save()
+        if(changeClass){
+            player.chosenclass =  Class.get(classId)
+            player.points = changeClass.currentpoints
+            player.save()
         }else{
-            saveChangeClass = new ChangeClass(player: getPlayer, chosenclass: Class.get(classId), currentpoints: 0)
-            saveChangeClass.save(flush: true)? System.out.println("Saved") : System.out.println("Failed")
-            getPlayer.properties['chosenclass'] = Class.get(classId)
-            getPlayer.properties['points'] = 0
-            getPlayer.save() ? System.out.println("Saved" + playerId + " " + classId) : System.out.println("Failed")
+            changeClass = new ClassChanger(player: player, chosenclass: Class.get(classId), currentpoints: 0)
+            changeClass.save(flush: true)? System.out.println("Saved") : System.out.println("Failed")
+            player.chosenclass = Class.get(classId)
+            player.points = 0
+            player.save() ? System.out.println("Saved" + playerId + " " + classId) : System.out.println("Failed")
         }
     }
 }

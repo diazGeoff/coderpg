@@ -27,15 +27,6 @@ class AdminController {
         }
     }
 
-    def copy(){
-        render grailsApplication.mainContext.getResource("mission/input/")
-        return
-    }
-
-    def upload(){
-
-    }
-
     def index() {
 
     }
@@ -46,10 +37,9 @@ class AdminController {
     }
 
     def login() {
-        def adminInstance = new Admin()
         if(Admin.findByUsername(params.codename) ){
-            if(params.password == Admin.findByUsername(params.codename).password ){
-                adminInstance = Admin.findByUsername(params.codename)
+            def adminInstance = Admin.findByUsername(params.codename)
+            if(params.password == adminInstance.password ){
                 session.admin = adminInstance
                 redirect uri: "/admin/"
                 return

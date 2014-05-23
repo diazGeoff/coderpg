@@ -1,0 +1,81 @@
+Rank C
+1.)Reverse Words
+
+Input
+ "CS degree"
+Output
+ "degree CS"
+
+2.)Distance between you and me
+
+Input
+ ["you", 1, 2, 3, "me"]
+ [5 , 4, "you", 8, 7, 9, "me", 6]
+Output
+ 6
+ 24
+
+3.)Calulator in Javascript
+
+ Input
+  "1+1"
+  "123-23"
+ Output
+ 2
+ 100
+
+4.)Flatten Array
+ 
+ Input
+  [1,[2,[3],4],5]
+ Output
+  [1,2,3,4,5]
+
+5.)Numeric String
+
+ Input
+  1000000
+ Output
+  "1,000,000"
+
+6.)Find the next palindrome number
+
+ Input
+  132
+  147
+ Output
+  141
+  151
+
+7.)Binary Substring Check in JavaScript
+
+ Input
+  1010110010, 10110
+  1110111011, 10011
+ Output
+  1
+  0
+
+8.)Determine the integer difference
+
+ Input
+  n = 4, [1, 1, 5, 6, 9, 16, 27]
+  n = 2, [1, 1, 3, 3]
+ Output  
+  3
+  4
+
+9.)Remove Duplicate
+
+ Input
+  tree traversal
+ Output
+  tre avsl
+
+10.)Balanced Brackets
+ Input
+  '()[]{}(([])){[()][]}'
+  '())[]{}'
+ Output
+  true
+  false

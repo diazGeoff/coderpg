@@ -77,3 +77,22 @@ li {
     width: 750px;
     height: 550px;
 }
+
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron h1 {
+   font-size: 52px !important;
+}
+
+.jumbotron .btn {
+    padding: 14px 24px;
+    font-size: 21px;
+}
+
+.jumbotron .tag-line {
+    font-size: 35px;
+}

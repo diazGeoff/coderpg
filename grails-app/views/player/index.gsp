@@ -6,13 +6,6 @@
 </head>
 
 <body>
-%{--<div class="nav" role="navigation">
-    <ul>
-        <li><a class="home" href="${createLink(uri: '/player')}">Home</a></li>
-        <li><g:link action="profile">Profile</g:link></li>
-        <li><g:link action="quests">Quests</g:link></li>
-    </ul>
-</div>--}%
 <div id="headerwrap">
     <div class="container">
         <div class="row">
@@ -22,11 +15,13 @@
                         <img src="http://placehold.it/150x150" alt="" class="img-thumbnail">
                     </div>
                 </div>
-                <div class="col-lg-7 prof-info">
+                <div class="col-lg-5 prof-info">
                     <ul class="codename">
                         <li><g:link action="profile">${session?.user?.name}</g:link></li>
                         <li>${session?.user?.codename}</li>
                         <li>${player?.chosenclass?.name}</li>
+                        <hr/>
+                        <a href="/coderpg/player/changeClass" class="btn btn-warning">Change Class</a>
                     </ul>
                 </div>
             </div>
@@ -79,7 +74,7 @@
                 <h1>Achievements</h1>
             </div>
         </div>
-        <hr>
+        <hr/>
         <div class="row">
             <div class="col-lg-3">
                 <img src="http://placehold.it/150x150" alt="" class="img-thumbnail">

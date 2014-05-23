@@ -44,10 +44,9 @@ class PlayerController {
             return
         }
         if(request.method == 'POST'){
-            def playerInstance = new Player()
             if(Player.findByCodename(params.codename) ){
-                if(params?.password == Player.findByCodename(params.codename).password ){
-                    playerInstance = Player.findByCodename(params.codename)
+                def playerInstance = Player.findByCodename(params.codename)
+                if(params?.password == playerInstance.password ){
                     session.user = playerInstance
                     redirect uri: "/player/"
                 }
@@ -81,12 +80,12 @@ class PlayerController {
     }
 
     def validate(){
-        def missionTaken
-        def missionStatus = PlayerMissions.withCriteria {
+        def missionStatus = PlayerMissions.createCriteria().get{
             and {
                 eq('player', Player.get(params.player.id))
                 eq('mission', Mission.get(params.mission.id))
             }
+            maxResults 1
         }
         if(params.check == "true"){
             params.check = true
@@ -94,18 +93,18 @@ class PlayerController {
         }else{
             params.check = false
         }
-        if(missionStatus.isEmpty()) {
-            missionTaken = new PlayerMissions(params)
-            missionTaken.properties['hasTaken'] = params.check
+        if(!missionStatus) {
+            missionStatus = new PlayerMissions(params)
+            missionStatus.hasTaken = params.check
         }else{
-            missionTaken = PlayerMissions.get(missionStatus.id[0])
-            if(!missionStatus.hasTaken[0] && params.check){
-                missionTaken.properties['hasTaken'] = params.check
+            missionStatus = PlayerMissions.get(missionStatus.id)
+            if(!missionStatus.hasTaken && params.check){
+                missionStatus.hasTaken = params.check
             }else{
                 params.check = false
             }
         }
-        if(!missionTaken.save(flush: true)){
+        if(!missionStatus.save(flush: true)){
             flash.message = missionTaken.errors
             redirect(action: "quests")
             return
@@ -119,11 +118,12 @@ class PlayerController {
 
     def mission(Long id, Long missionId) {
         def mission
-        def status = PlayerMissions.withCriteria {
+        def status = PlayerMissions.createCriteria().get {
             and {
                 eq('player.id', session.user.id)
                 eq('mission.id', missionId)
             }
+            maxResults 1
         }
         def sessionId = Player.get(session.user.id).chosenclass.id
         def questId = Quest.findById(id)?.chosenclass?.id

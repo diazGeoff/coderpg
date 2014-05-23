@@ -40,11 +40,7 @@
     <label for="birthdate">Birthday:</label>
     <g:datePicker name="birthdate" precision="day" value="${session.user.birthdate}"/>
 </div>
-<div class="form-group fieldcontain">
-    <label for="chosenclass">Class</label>
-    <g:select id="chosenclass" name="chosenclass.id" optionValue="name" from="${com.coderpg.Class.list()}" optionKey="id" value="${user.chosenclass.id}" class="many-to-one form-control"/>
-</div>
 <div class="form-group">
     <label for="info">Information</label>
-    <textarea name="info" class="form-control" rows="4" value="${session.user.info}"></textarea>
+    <textarea name="info" class="form-control" rows="4" value="">${session.user.info}</textarea>
 </div>

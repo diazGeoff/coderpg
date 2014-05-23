@@ -8,7 +8,7 @@ class UrlMappings {
         }
         "/$controller/quests/$id?/$action?/$missionId?"{
         }
-        "/"(controller: "player")
+        "/"(view: "index")
         "500"(view:'/error')
     }
 }

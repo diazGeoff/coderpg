@@ -20,13 +20,12 @@ class QuestController {
     }
 
     def list(Long id) {
-        def quest = new Quest()
-        if(id) {
-            quest = Quest.where { chosenclass.id == id }
-            [questInstanceList: quest.list(), questInstanceTotal: quest.count()]
-        }else{
-            [questInstanceList: Quest.list(), questInstanceTotal: Quest.count()]
+        def questCriteria = Quest.where {
+            if(id){
+                chosenclass.id == id
+            }
         }
+        [questInstanceList: questCriteria.list(), questInstanceTotal: questCriteria.count()]
     }
 
     def create() {
